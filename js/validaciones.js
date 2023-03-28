@@ -6,7 +6,11 @@ inputNacimiento. addEventListener("blur", (evento) => {
 
 function validarNacimiento(input){
     const fechaCliente = new Date(input.value);
-    mayorDeEdad(fechaCliente);
+    let mensaje ="";
+    if (!mayorDeEdad(fechaCliente)) {
+        mensaje="Debes ser mayor de 18 años"
+    }
+    input.setCustomValidity(mensaje);
 }
 
 function mayorDeEdad(fecha){
@@ -14,5 +18,5 @@ function mayorDeEdad(fecha){
     const diferenciaFecha = new Date (fecha.getUTCFullYear() + 18, 
     fecha.getUTCMonth(), 
     fecha.getUTCDate());
-    return fechaActual <= diferenciaFecha;
+    return diferenciaFecha  <= fechaActual;
 };
